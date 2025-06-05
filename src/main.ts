@@ -8,6 +8,7 @@ async function bootstrap() {
   await app.listen(PORT);
   
   console.log('RUNNING ON PORT :',PORT)
+  console.log('hello world')
 }
 
 void bootstrap();
