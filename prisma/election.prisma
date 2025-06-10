@@ -21,11 +21,13 @@ model Election{
     name String
     description String?
 
-    startdate DateTime
+    startDate DateTime
     endDate DateTime
     isActive Boolean @default(true)
 
     Votes Vote[]
+    Positions Position[]
 
     @@index([isActive])
+
 }
