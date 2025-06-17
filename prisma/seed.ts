@@ -43,6 +43,30 @@ async function seedElections() {
         }
     })
 
+    await prisma.student.upsert({
+        where: { studentId: 'student-2' },
+        update: {},
+        create: {
+            studentId: 'student-2',
+            name: 'Jane Doe',
+            email: 'janedoe@email.com',
+            department: 'Computer Science',
+            createdAt: new Date(),
+        }
+    })
+
+    await prisma.student.upsert({
+        where: { studentId: 'student-3' },
+        update: {},
+        create: {
+            studentId: 'student-3',
+            name: 'Justin Doe',
+            email: 'justindoe@email.com',
+            department: 'Computer Science',
+            createdAt: new Date(),
+        }
+    })
+
     await prisma.candidate.upsert({
         where: {candidateId: 'candidate-1'},
         update: {},
@@ -56,6 +80,23 @@ async function seedElections() {
             Student: {
                 connect: {
                     studentId: 'student-1'
+                }
+            }
+        }
+    })
+    await prisma.candidate.upsert({
+        where: {candidateId: 'candidate-2'},
+        update: {},
+        create: {
+            candidateId: 'candidate-2',
+            Position: {
+                connect: {
+                    id: PRESIDENT25_ID
+                }
+            },
+            Student: {
+                connect: {
+                    studentId: 'student-2'
                 }
             }
         }
