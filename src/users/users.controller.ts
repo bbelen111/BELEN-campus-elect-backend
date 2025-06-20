@@ -35,4 +35,30 @@ export class UsersController {
             id: id
         })
     }
+
+    @Get('students/create')
+    @ApiOperation({
+        summary: 'create a new student',
+        description: 'creates a new student in the system'
+    })
+    @ApiResponse({
+        status: 201,
+        description: 'student created successfully',
+        type: ReturnStudentDto
+    })
+    async createStudent(
+        @Query('studentId') studentId: string,
+        @Query('name') name: string,
+        @Query('email') email: string,
+        @Query('department') department: string,
+        @Query('createdAt') createdAt?: Date | string
+    ): Promise<Student> {
+        return await this.userService.createStudent({
+            studentId,
+            name,
+            email,
+            department,
+            createdAt
+        });
+    }
 }
