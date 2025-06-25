@@ -1,4 +1,4 @@
-import { Get } from '@nestjs/common';
+import { Body, Get, Post } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
@@ -36,7 +36,7 @@ export class UsersController {
         })
     }
 
-    @Get('students/create')
+    @Post('students/create')
     @ApiOperation({
         summary: 'create a new student',
         description: 'creates a new student in the system'
@@ -46,19 +46,10 @@ export class UsersController {
         description: 'student created successfully',
         type: ReturnStudentDto
     })
+
     async createStudent(
-        @Query('studentId') studentId: string,
-        @Query('name') name: string,
-        @Query('email') email: string,
-        @Query('department') department: string,
-        @Query('createdAt') createdAt?: Date | string
+        @Body() studentData: ReturnStudentDto
     ): Promise<Student> {
-        return await this.userService.createStudent({
-            studentId,
-            name,
-            email,
-            department,
-            createdAt
-        });
+        return await this.userService.createStudent(studentData);
     }
 }
