@@ -27,8 +27,9 @@ export class ReturnStudentDto implements Partial<Student> {
     email: string;
 
     @ApiProperty({
-        description: 'role of the student',
-        example: 'student'
+        description: 'date the student was created',
+        example: '2023-10-01T00:00:00.000Z',
+        required: false,
     })
-    role: string;
+    createdAt?: Date;
 }
